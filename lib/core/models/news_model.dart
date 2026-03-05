@@ -1,13 +1,26 @@
-import 'source.dart';
+import 'package:hive/hive.dart';
 
+import 'source_model.dart';
+
+part 'news_model.g.dart';
+
+@HiveType(typeId: 0)
 class NewsModel {
-  Source? source;
+  @HiveField(0)
+  SourceModel? source;
+  @HiveField(1)
   String? author;
+  @HiveField(2)
   String? title;
+  @HiveField(3)
   String? description;
+  @HiveField(4)
   String? url;
+  @HiveField(5)
   String? urlToImage;
+  @HiveField(6)
   String? publishedAt;
+  @HiveField(7)
   String? content;
 
   NewsModel({
@@ -24,7 +37,7 @@ class NewsModel {
   factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
     source: json['source'] == null
         ? null
-        : Source.fromJson(json['source'] as Map<String, dynamic>),
+        : SourceModel.fromJson(json['source'] as Map<String, dynamic>),
     author: json['author'] as String?,
     title: json['title'] as String?,
     description: json['description'] as String?,
