@@ -43,7 +43,7 @@ class HomeRepo {
       }
       // check internet connection before making api call
       if (await checkInternetService.isConnected()) {
-        final remoteNews = await remoteDataSource.getTopHeadlines(
+        final remoteNews = await remoteDataSource.getTopHeadlinesNews(
           page: page ?? 1,
           category: category,
         );

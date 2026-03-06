@@ -7,7 +7,7 @@ class HomeRemoteDataSource {
   HomeRemoteDataSource({required this.apiService});
 
   // one method to get top headlines news with or without category
-  Future<List<NewsModel>> getTopHeadlines({
+  Future<List<NewsModel>> getTopHeadlinesNews({
     int page = 1,
     String? category,
   }) async {
@@ -15,11 +15,13 @@ class HomeRemoteDataSource {
       final response = await apiService.get(
         endPoint: EnvConfig.topHeadlinesEndPoint,
         queryParameters: {
-          'country': 'us',
+          // to get more data when filter by category
+          if (category == null) 'country': 'us',
           "page": page,
           "pageSize": 10,
-          'category':
-              ?category, //check if user choose any category presented in Home screen
+          if (category != null)
+            'category':
+                category, //check if user choose any category presented in Home screen
         },
       );
       final List<dynamic> articlesList = response['articles'] ?? [];

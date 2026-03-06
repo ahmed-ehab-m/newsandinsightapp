@@ -8,8 +8,41 @@ import 'package:newsandinsightapp/features/home/presentation/views/widgets/gener
 import 'package:newsandinsightapp/features/home/presentation/views/widgets/home_view_app_bar.dart';
 import 'package:newsandinsightapp/features/home/presentation/views/widgets/selected_items_section.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
+
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  final ScrollController verticalScrollController = ScrollController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    verticalScrollController.addListener(onVerticalScroll);
+  }
+
+  // for pagination
+  void onVerticalScroll() {
+    final maxScroll = verticalScrollController.position.maxScrollExtent;
+    final currentScroll = verticalScrollController.position.pixels;
+    //0.9 for better UX
+    if (currentScroll >= (maxScroll * 0.9)) {
+      context.read<GetCategoryNewsCubit>().getCategoryNews(
+        category: context
+            .read<GetCategoryNewsCubit>()
+            .currentCategory, // التريكة اللي عملناها المرة اللي فاتت
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    verticalScrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +63,7 @@ class HomeViewBody extends StatelessWidget {
           ]);
         },
         child: CustomScrollView(
+          controller: verticalScrollController,
           slivers: [
             SliverToBoxAdapter(child: HomeViewAppBar()),
             GeneralTopHeadlinesWidget(),
