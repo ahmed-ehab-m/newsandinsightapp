@@ -5,6 +5,7 @@ class AppStrings {
   static const String bookMarks = "BookMarks";
   static const String more = "More";
   static const String imageNotAvailable = "Image not available";
+  static const String favoriteArticles = "Favorite Articles";
   ////
   static const List<String> categories = [
     'business',

@@ -26,7 +26,7 @@ class MainLayout extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark_border),
             activeIcon: Icon(Icons.bookmark),
-            label: 'Saved',
+            label: 'Favorite',
           ),
         ],
       ),

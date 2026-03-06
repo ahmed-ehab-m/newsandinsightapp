@@ -6,9 +6,10 @@ import 'package:newsandinsightapp/core/router/app_router.dart';
 import 'package:newsandinsightapp/core/theme/app_colors.dart';
 import 'package:newsandinsightapp/core/theme/app_text_styles.dart';
 import 'package:newsandinsightapp/core/utils/app_strings.dart';
+import 'package:newsandinsightapp/core/widgets/fav_icon.dart';
 
-class SelectedNewsItemWidget extends StatelessWidget {
-  const SelectedNewsItemWidget({super.key, required this.newsModel});
+class CustomNewsListViewItem extends StatelessWidget {
+  const CustomNewsListViewItem({super.key, required this.newsModel});
   final NewsModel newsModel;
   @override
   Widget build(BuildContext context) {
@@ -74,10 +75,7 @@ class SelectedNewsItemWidget extends StatelessWidget {
               ),
             ),
             SizedBox(width: 10),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.bookmark_border, color: AppColors.textSecondary),
-            ),
+            FavIcon(newsModel: newsModel),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsandinsightapp/core/models/news_model.dart';
+import 'package:newsandinsightapp/core/widgets/fav_icon.dart';
 import 'package:newsandinsightapp/features/details/presentation/views/widgets/details_view_body.dart';
 
 class DetailsView extends StatelessWidget {
@@ -8,11 +9,7 @@ class DetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.bookmark_border)),
-        ],
-      ),
+      appBar: AppBar(actions: [FavIcon(newsModel: newsModel)]),
       body: SafeArea(child: DetailsViewBody(newsModel: newsModel)),
     );
   }

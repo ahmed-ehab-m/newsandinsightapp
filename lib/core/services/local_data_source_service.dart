@@ -10,12 +10,15 @@ import 'package:newsandinsightapp/core/models/source_model.dart';
 
 class LocalDataSourceService {
   static const String boxName = newsBox;
+  static const String favoriteBoxName = favoriteBox;
+
   static Future<void> init() async {
     try {
       await Hive.initFlutter();
       Hive.registerAdapter(NewsModelAdapter());
       Hive.registerAdapter(SourceModelAdapter());
       await Hive.openBox(boxName);
+      await Hive.openBox(favoriteBoxName);
     } on Exception catch (e) {
       log("local data source service error: $e");
       rethrow;

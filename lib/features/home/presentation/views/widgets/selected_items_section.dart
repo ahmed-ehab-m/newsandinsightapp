@@ -16,8 +16,6 @@ class SelectedItemsSection extends StatelessWidget {
       builder: (context, state) {
         if (state is GetCategoryNewsFailure) {
           log("get category news error message: ${state.errorMessage}");
-
-          return SliverToBoxAdapter(child: Text(state.errorMessage));
         }
         if (state is GetCategoryNewsSuccess) {
           print("get category news success message: ${state.news.length}");
