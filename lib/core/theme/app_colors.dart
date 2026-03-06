@@ -5,6 +5,6 @@ class AppColors {
   static const Color secondaryColor = Color.fromARGB(255, 202, 183, 13);
   static const backgroundColor = Colors.white;
   static const Color textPrimary = Colors.black;
-  static const Color textSecondary = Colors.grey;
+  static const Color textSecondary = Color.fromARGB(255, 107, 106, 106);
   static const Color cardColor = Color.fromARGB(255, 230, 228, 228);
 }
