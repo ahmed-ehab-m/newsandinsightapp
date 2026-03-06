@@ -4,4 +4,5 @@ class AppStrings {
   static const String home = "Home";
   static const String bookMarks = "BookMarks";
   static const String more = "More";
+  static const String imageNotAvailable = "Image not available";
 }
