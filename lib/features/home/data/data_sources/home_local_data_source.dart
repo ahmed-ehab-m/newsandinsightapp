@@ -4,7 +4,7 @@ import 'package:newsandinsightapp/core/services/local_data_source_service.dart';
 
 class HomeLocalDataSource {
   final LocalDataSourceService localDataSourceService;
-  HomeLocalDataSource(this.localDataSourceService);
+  HomeLocalDataSource({required this.localDataSourceService});
 
   /////////////////////////
 
