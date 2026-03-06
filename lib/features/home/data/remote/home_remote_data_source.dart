@@ -9,6 +9,7 @@ class HomeRemoteDataSource {
   final ApiService apiService;
   HomeRemoteDataSource({required this.apiService});
 
+  // one method to get top headlines news with or without category
   Future<Either<Failure, List<NewsModel>>> getTopHeadlines({
     int page = 1,
     String? category,
@@ -20,7 +21,8 @@ class HomeRemoteDataSource {
           'country': 'us',
           "page": page,
           "pageSize": 10,
-          'category': ?category,
+          'category':
+              ?category, //check if user choose any category presented in Home screen
         },
       );
       final List<dynamic> articlesList = response['articles'] ?? [];
