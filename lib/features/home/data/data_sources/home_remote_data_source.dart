@@ -1,7 +1,4 @@
-import 'package:dartz/dartz.dart';
 import 'package:newsandinsightapp/core/config/env_config.dart';
-import 'package:newsandinsightapp/core/error/error_handler.dart';
-import 'package:newsandinsightapp/core/error/failure.dart';
 import 'package:newsandinsightapp/core/models/news_model.dart';
 import 'package:newsandinsightapp/core/services/api_service.dart';
 
@@ -10,7 +7,7 @@ class HomeRemoteDataSource {
   HomeRemoteDataSource({required this.apiService});
 
   // one method to get top headlines news with or without category
-  Future<Either<Failure, List<NewsModel>>> getTopHeadlines({
+  Future<List<NewsModel>> getTopHeadlines({
     int page = 1,
     String? category,
   }) async {
@@ -29,9 +26,9 @@ class HomeRemoteDataSource {
       List<NewsModel> news = articlesList.map((newsJson) {
         return NewsModel.fromJson(newsJson);
       }).toList();
-      return Right(news);
+      return news;
     } catch (e) {
-      return Left(ErrorHandler.handleError(e));
+      rethrow;
     }
   }
 }
