@@ -60,6 +60,7 @@ flutter_dotenv: For securely loading API keys from a .env file.
 The app strictly follows Clean Architecture and Feature-Based MVVM concepts to ensure scalability and maintainability.
 
 Plaintext
+```
 lib/
 ├── core/
 │   ├── config/          # Environment variables and API endpoints
@@ -77,3 +78,4 @@ lib/
 │   ├── details/         # Article details screen
 │
 └── main.dart            # App entry point 
+```
