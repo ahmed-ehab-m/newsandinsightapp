@@ -4,6 +4,12 @@ A modern, fast, and scalable Flutter News Application that provides real-time to
 
 Built with **MVVM Architecture** principles and **Cubit (Bloc)** for robust state management.
 
+## 🔥 Key Technical Highlights (Why this app stands out)
+- **Advanced Pagination & Edge Cases:** Fully handled infinite scrolling edge cases. This includes preventing duplicate API calls during rapid scrolling, handling network drops seamlessly mid-scroll, and safely detecting the end of the data list.
+- **Smart Data Caching & State Retention:** Optimized API usage and enhanced UX by preserving data state. If the user exits the app or navigates away and returns within a short timeframe (e.g., under a minute), the app instantly displays the cached data without making unnecessary and costly network requests.
+- **Offline Favorites:** Saved articles are stored locally using **Hive** (NoSQL), allowing users to read their favorite news even without an internet connection.
+- **Bulletproof UI States:** Beautiful Shimmer loading skeletons, custom empty states, and interactive network error screens with retry mechanisms.
+
 ## 📑 Table of Contents
 - [Features](#-features)
 - [Project Setup & API Configuration](#-project-setup--api-configuration)
