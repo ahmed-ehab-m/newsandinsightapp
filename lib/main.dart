@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsandinsightapp/core/router/app_router.dart';
 import 'package:newsandinsightapp/core/theme/app_theme.dart';
 import 'package:newsandinsightapp/core/utils/app_initializer.dart';
 import 'package:newsandinsightapp/error_app.dart';
