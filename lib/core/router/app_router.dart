@@ -2,14 +2,38 @@ import 'package:go_router/go_router.dart';
 import 'package:newsandinsightapp/core/models/news_model.dart';
 import 'package:newsandinsightapp/features/details/presentation/views/details_view.dart';
 import 'package:newsandinsightapp/features/home/presentation/views/home_view.dart';
+import 'package:newsandinsightapp/main_layout.dart';
 
 class AppRouter {
-  static const String homeView = '/';
+  static const String homeView = '/homeView';
   static const String detailsView = '/detailsView';
+  static const String savedView = '/savedView';
 
   static final router = GoRouter(
     routes: [
-      GoRoute(path: homeView, builder: (context, state) => const HomeView()),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return MainLayout(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: homeView,
+                builder: (context, state) => const HomeView(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: savedView,
+                builder: (context, state) => const SavedView(),
+              ),
+            ],
+          ),
+        ],
+      ),
       GoRoute(
         path: detailsView,
         builder: (context, state) {
