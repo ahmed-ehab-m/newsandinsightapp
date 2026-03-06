@@ -1,16 +1,79 @@
-# newsandinsightapp
+# 📰 News & Insight App
 
-A new Flutter project.
+A modern, fast, and scalable Flutter News Application that provides real-time top headlines and category-based news. The app features a seamless user experience with infinite scrolling (pagination), offline favorites caching, and an elegant UI handling all edge cases.
 
-## Getting Started
+Built with **MVVM Architecture** principles and **Cubit (Bloc)** for robust state management.
 
-This project is a starting point for a Flutter application.
+## 📑 Table of Contents
+- [Features](#-features)
+- [Project Setup & API Configuration](#-project-setup--api-configuration)
+- [Main Packages Used](#-main-packages-used)
+- [Folder Structure (Clean Architecture)](#-folder-structure)
 
-A few resources to get you started if this is your first Flutter project:
+## ✨ Features
+- **Real-time News:** Fetch top headlines and browse news by categories (Business, Sports, Tech, etc.).
+- **Infinite Scrolling:** Implemented pagination to load more articles seamlessly as the user scrolls.
+- **Local Favorites:** Save your favorite articles locally using Hive for offline access.
+- **Smart UI States:** Beautiful Shimmer loading skeletons, empty states, and network error handling with retry mechanisms.
+- **Bottom Navigation:** Smooth navigation retaining tab states using `GoRouter` (StatefulShellRoute).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🚀 Project Setup & API Configuration
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This app uses an external News API. To run this project locally, you need to set up your API Key securely.
+
+### 1️⃣ Get Your API Key
+🔑 Visit [NewsAPI.org](https://newsapi.org/) (or your specific API provider) and register to get a free API Key.
+
+### 2️⃣ Configure `.env` File
+For security reasons, the API key is not committed to GitHub. You need to create a `.env` file in the root directory of the project.
+1. Create a file named `.env` in the root folder.
+2. Add your API Key inside it like this:
+   ```env
+   API_KEY=your_api_key_here
+   BASE_URL=[https://newsapi.org/v2/](https://newsapi.org/v2/)
+   
+###3️⃣ Run the App
+Run the following commands in your terminal:
+Bash
+flutter clean
+flutter pub get
+flutter run
+
+### 📦 Main Packages Used
+flutter_bloc: For implementing the Bloc/Cubit state management pattern.
+
+get_it: For dependency injection and Service Locator.
+
+go_router: For declarative routing and managing Bottom Navigation state.
+
+dio: For handling HTTP requests and connecting to the API efficiently.
+
+hive_flutter: For fast, local NoSQL database storage (Favorites feature).
+
+cached_network_image: For efficiently loading and caching web images.
+
+shimmer: For creating beautiful skeleton loading animations.
+
+flutter_dotenv: For securely loading API keys from a .env file.
+
+### 📂 Folder Structure
+The app strictly follows Clean Architecture and Feature-Based MVVM concepts to ensure scalability and maintainability.
+
+Plaintext
+lib/
+├── core/
+│   ├── config/          # Environment variables and API endpoints
+│   ├── errors/          # Failure models and Exception handling
+│   ├── models/          # Shared models (e.g., NewsModel)
+│   ├── services/        # ApiService, LocalStorageService
+│   ├── theme/           # App colors, text styles, and themes
+│   ├── utils/           # Constants, Strings, and Sizes
+│   ├── di/              # Service Locator initialization
+│   └── widgets/         # Shared UI components (Custom errors, Shimmers)
+│
+├── features/
+│   ├── home/            # Top headlines, Categories, Pagination
+│   ├── favorite/        # Local storage caching logic
+│   ├── details/         # Article details screen
+│
+└── main.dart            # App entry point 
