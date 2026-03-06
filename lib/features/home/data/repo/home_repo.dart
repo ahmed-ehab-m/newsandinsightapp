@@ -26,12 +26,15 @@ class HomeRepo {
       // first check if user close the app and reopen it less than one minute,
       // if yes then return the cached news
       if (page == 1 && !isRefresh) {
-        final DateTime? lastFetchTime = await localDataSource
-            .getLastFetchTime();
+        final DateTime? lastFetchTime = await localDataSource.getLastFetchTime(
+          category: category,
+        );
         if (lastFetchTime != null) {
           final difference = DateTime.now().difference(lastFetchTime);
           if (difference.inMinutes < 1) {
-            final cachedNews = await localDataSource.getNews();
+            final cachedNews = await localDataSource.getNews(
+              category: category,
+            );
             if (cachedNews.isNotEmpty) {
               return Right(cachedNews);
             }
@@ -46,16 +49,19 @@ class HomeRepo {
         );
         // save only the first page to cache, because the user may not scroll to the end of the list
         if (page == 1) {
-          await localDataSource.saveNews(remoteNews);
+          await localDataSource.saveNews(remoteNews, category: category);
           // save the last fetch time to check it later
-          await localDataSource.saveLastFetchTime(DateTime.now());
+          await localDataSource.saveLastFetchTime(
+            DateTime.now(),
+            category: category,
+          );
         }
         return Right(remoteNews);
       }
       // if there is no internet connection, return the cached news if exist
       else {
         if (page == 1) {
-          final localNews = await localDataSource.getNews();
+          final localNews = await localDataSource.getNews(category: category);
           if (localNews.isNotEmpty) {
             return Right(localNews);
           }

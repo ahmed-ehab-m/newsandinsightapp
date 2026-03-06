@@ -9,12 +9,13 @@ class GetCategoryNewsCubit extends Cubit<GetCategoryNewsState> {
   final HomeRepo _homeRepo;
 
   GetCategoryNewsCubit(this._homeRepo) : super(GetCategoryNewsInitial());
-
+  String currentCategory = 'business';
   Future<void> getCategoryNews({
     String? category,
     int? page = 1,
     bool? isRefresh = false,
   }) async {
+    currentCategory = category ?? 'business';
     // for best user experience
     // we will show loading only when user open the app
     // or change the category but when user scroll down to load more news we will not show loading

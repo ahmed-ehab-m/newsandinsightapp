@@ -13,29 +13,32 @@ class GeneralTopHeadlinesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(AppStrings.topHeadlines, style: AppTextStyles.headLine),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.4,
-          child: Divider(thickness: 1, color: AppColors.secondaryColor),
-        ),
-        BlocBuilder<GetHeadLinesCubit, GetHeadLinesState>(
-          builder: (context, state) {
-            List<NewsModel> news = [];
-            if (state is GetHeadLinesFailure) {
-              return Text(state.errorMessage);
-            }
-            if (state is GetHeadLinesSuccess) {
-              news = state.news;
+    return SliverToBoxAdapter(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(AppStrings.topHeadlines, style: AppTextStyles.headLine),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.4,
+            child: Divider(thickness: 1, color: AppColors.secondaryColor),
+          ),
+          BlocBuilder<GetHeadLinesCubit, GetHeadLinesState>(
+            builder: (context, state) {
+              List<NewsModel> news = [];
+              if (state is GetHeadLinesFailure) {
+                return Text(state.errorMessage);
+              }
+              if (state is GetHeadLinesSuccess) {
+                news = state.news;
 
-              return SuccessTopHeadLineListView(news: news);
-            }
-            return const NewsLoadingWidget();
-          },
-        ),
-      ],
+                return SuccessTopHeadLineListView(news: news);
+              }
+              return const NewsLoadingWidget();
+            },
+          ),
+        ],
+      ),
     );
   }
 }

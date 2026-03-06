@@ -10,11 +10,7 @@ class GetHeadLinesCubit extends Cubit<GetHeadLinesState> {
 
   GetHeadLinesCubit(this._homeRepo) : super(GetHeadLinesInitial());
 
-  Future<void> getHeadLines({
-    String? category,
-    int? page = 1,
-    bool? isRefresh = false,
-  }) async {
+  Future<void> getHeadLines({int? page = 1, bool? isRefresh = false}) async {
     // for best user experience
     // we will show loading only when user open the app
     // or change the category but when user scroll down to load more news we will not show loading
@@ -22,10 +18,7 @@ class GetHeadLinesCubit extends Cubit<GetHeadLinesState> {
     if (page == 1) {
       emit(GetHeadLinesLoading());
     }
-    final result = await _homeRepo.getTopHeadlines(
-      page: page ?? 1,
-      category: category,
-    );
+    final result = await _homeRepo.getTopHeadlines(page: page ?? 1);
     result.fold(
       (failure) => emit(GetHeadLinesFailure(errorMessage: failure.message)),
       (news) {

@@ -13,7 +13,6 @@ class SelectedNewsItemWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       width: MediaQuery.of(context).size.width * 1,
-      // height: MediaQuery.of(context).size.height * 0.35,
       decoration: BoxDecoration(
         color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(8),
@@ -21,27 +20,56 @@ class SelectedNewsItemWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-            child: AspectRatio(
-              aspectRatio: 7 / 5,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: CachedNetworkImage(
-                  imageUrl: newsModel.urlToImage ?? '',
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  errorWidget: (context, url, error) => Container(
-                    color: AppColors.cardColor,
-                    child: Text(
-                      AppStrings.imageNotAvailable,
-                      style: AppTextStyles.description,
-                    ),
-                  ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: CachedNetworkImage(
+              imageUrl: newsModel.urlToImage ?? '',
+              // width: double.infinity,
+              fit: BoxFit.cover,
+              height: 100,
+              width: 100,
+              errorWidget: (context, url, error) => Container(
+                color: AppColors.cardColor,
+                child: Text(
+                  AppStrings.imageNotAvailable,
+                  style: AppTextStyles.description,
                 ),
               ),
             ),
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  newsModel.title ?? "No title",
+                  style: AppTextStyles.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  "By ${newsModel.author ?? "No author"}",
+                  style: AppTextStyles.description,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  newsModel.publishedAt ?? "No date",
+                  style: AppTextStyles.date,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(width: 10),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.bookmark_border, color: AppColors.textSecondary),
           ),
         ],
       ),

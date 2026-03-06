@@ -33,7 +33,7 @@ class NewsAndInsights extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) =>
-              sl<GetCategoryNewsCubit>()
+              GetCategoryNewsCubit(sl<HomeRepo>())
                 ..getCategoryNews(category: AppStrings.categories[0]),
         ),
       ],

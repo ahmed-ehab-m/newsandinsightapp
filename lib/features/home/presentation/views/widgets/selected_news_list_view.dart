@@ -7,15 +7,11 @@ class SelectedNewsListView extends StatelessWidget {
   final List<NewsModel> news;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.35,
-      child: ListView.builder(
-        // scrollDirection: Axis.horizontal,
-        itemCount: news.length,
-        itemBuilder: (context, index) {
-          return SelectedNewsItemWidget(newsModel: news[index]);
-        },
-      ),
+    return SliverList.builder(
+      itemCount: news.length,
+      itemBuilder: (context, index) {
+        return SelectedNewsItemWidget(newsModel: news[index]);
+      },
     );
   }
 }
