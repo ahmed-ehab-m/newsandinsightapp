@@ -31,9 +31,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     //0.9 for better UX
     if (currentScroll >= (maxScroll * 0.9)) {
       context.read<GetCategoryNewsCubit>().getCategoryNews(
-        category: context
-            .read<GetCategoryNewsCubit>()
-            .currentCategory, // التريكة اللي عملناها المرة اللي فاتت
+        category: context.read<GetCategoryNewsCubit>().currentCategory,
       );
     }
   }
