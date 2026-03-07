@@ -39,7 +39,7 @@ class _SuccessTopHeadLineListViewState
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.35,
+      height: MediaQuery.of(context).size.height * 0.38,
       child: ListView.builder(
         controller: horizontalScrollController,
         scrollDirection: Axis.horizontal,
