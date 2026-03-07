@@ -1,6 +1,8 @@
 # 📰 News & Insight App
 
 A modern, fast, and scalable Flutter News Application that provides real-time top headlines and category-based news. The app features a seamless user experience with infinite scrolling (pagination), offline favorites caching, and an elegant UI handling all edge cases.
+here is the Google Drive link to download and test the APK directly
+https://drive.google.com/file/d/1ubDCWRY4j_i2lmNr0jDEG_t2uBecS3g7/view?usp=sharing
 
 Built with **MVVM Architecture** principles and **Cubit (Bloc)** for robust state management.
 
